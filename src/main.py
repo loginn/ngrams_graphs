@@ -1,5 +1,5 @@
-from Generator import Generator
-from utils import generate_model_graph
+from src.Generator import Generator
+from src.utils import generate_model_graph
 
 n = 3
 data = ['head of marketing', 'marketing manager', 'marketing marketing']

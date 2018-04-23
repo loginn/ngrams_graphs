@@ -1,5 +1,5 @@
-from TextGraph import TextGraph
-from utils import find_edge
+from src.TextGraph import TextGraph
+from src.utils import find_edge
 
 
 class Generator:
