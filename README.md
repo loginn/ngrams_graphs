@@ -1,1 +1,1 @@
-###A library for ngram graph analysis of text
+A library for ngram graph analysis of text
