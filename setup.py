@@ -9,4 +9,7 @@ setup(name='ngram_graphs',
       license='MIT',
       install_requires=['python-igraph'],
       packages=['ngram_graphs'],
-      zip_safe=False)
+      zip_safe=False,
+      test_suite='nose.collector',
+      tests_require=['nose'],
+      )
