@@ -16,7 +16,7 @@ def find_edge(graph, source, target):
     return None
 
 
-def generate_model_graph(graphs: List, lr: float=0.5):
+def generate_model_graph(graphs: List, lr: float = 0.5):
     model = graphs[0]
     for graph in graphs[1:]:
         model.update(graph, lr)
