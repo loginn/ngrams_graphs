@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='ngram_graphs',
-      version='0.1',
+      version='0.1.1',
       description='An igraph based ngram graph library for NLP',
       long_description="""  Library for ngram graph comparison based on papers from Ioannis Kontopoulos, 
                             George Giannakopoulos and Iraklis Varlamis. 
