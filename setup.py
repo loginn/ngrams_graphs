@@ -1,9 +1,9 @@
 from setuptools import setup
 
 setup(name='ngram_graphs',
-      version='0.1.2',
+      version='0.1.3',
       description='An igraph based ngram graph library for NLP',
-      long_description="""Library for ngram graph comparison based on papers from Ioannis Kontopoulos, George Giannakopoulos and Iraklis Varlamis. The library uses igraph to create directed and weighted graphs from documents and provides means to compare them using the distance metrics defined in 'Kontopoulos, Ioannis & Giannakopoulos, George & Varlamis, Iraklis. (2017). Distributing N-Gram Graphs for Classification. 3-11. 10.1007/978-3-319-67162-8_1.'""",
+      long_description="""Library for ngram graph comparison based on papers from George Giannakopoulos and Vangelis Karkaletsis. The library uses igraph to create directed and weighted graphs from documents and provides means to compare them using the distance metrics defined in 'Giannakopoulos, George & Karkaletsis, Vangelis. (2009). N-gram graphs: Representing documents and document sets in summary system evaluation. '""",
       url='https://github.com/loginn/ngrams_graphs',
       author='loginn',
       classifiers=[
