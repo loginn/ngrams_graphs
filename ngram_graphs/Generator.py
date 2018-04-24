@@ -1,7 +1,7 @@
 from typing import List
 
-from src.TextGraph import TextGraph
-from src.utils import find_edge
+from ngram_graphs.TextGraph import TextGraph
+from ngram_graphs.utils import find_edge
 
 
 class Generator:

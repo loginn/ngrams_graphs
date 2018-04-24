@@ -1,6 +1,6 @@
 from igraph import Graph
 
-from src.utils import find_node_name
+from ngram_graphs.utils import find_node_name
 
 
 class TextGraph(Graph):

@@ -1,6 +1,6 @@
-from src.Generator import Generator
-from src.utils import generate_model_graph
-from src.comparison import *
+from ngram_graphs.Generator import Generator
+from ngram_graphs.utils import generate_model_graph
+from ngram_graphs.comparison import *
 
 n = 2
 data = ['head of marketing', 'marketing manager', 'marketing consultant', 'marketing']
@@ -8,10 +8,12 @@ test = ['marketing manager', 'market analysis', 'construction worker']
 
 generator = Generator(n)
 
-graphs = generator.generate_text_graphs(data)
+data_graphs = generator.generate_text_graphs(data)
 test_graphs = generator.generate_text_graphs(test)
 
-g1 = generate_model_graph(graphs)
+g1 = generate_model_graph(data_graphs)
+
+print(len(data_graphs[0].vs), len(data_graphs[0].es))
 
 for idx, g2 in enumerate(test_graphs):
     print(test[idx])
