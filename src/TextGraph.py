@@ -19,7 +19,7 @@ class TextGraph(Graph):
     def __add_unknown_edge(self, other, o_edge, learning_factor):
         source = find_node_name(other, o_edge.source)
         target = find_node_name(other, o_edge.target)
-        self.add_edge(source, target, weight=o_edge["weight"] * learning_factor, name=source+target)
+        self.add_edge(source, target, weight=o_edge["weight"] * learning_factor, name=source + ' ' + target)
 
     def __update_edges(self, other, learning_factor):
         for o_edge in other.es:
