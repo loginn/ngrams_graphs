@@ -2,13 +2,17 @@ def size_similarity(g1, g2):
     s1 = len(g1.es)
     s2 = len(g2.es)
 
+    if not s1 or not s2:
+        return None
+
     return min(s1, s2) / max(s1, s2)
 
 
 def containment_similarity(g1, g2):
     s1 = len(g1.es)
     s2 = len(g2.es)
-
+    if not s1 or not s2:
+        return None
     common_edges = [e for e in g1.es if e["name"] in g2.es["name"]]
 
     return len(common_edges) / max(s1, s2)
@@ -31,4 +35,8 @@ def value_similarity(g1, g2):
 
 
 def normalized_value_similarity(g1, g2):
-    return value_similarity(g1, g2) / size_similarity(g1, g2)
+    s = size_similarity(g1, g2)
+    v = value_similarity(g1, g2)
+    if not s:
+        return None
+    return v / s
