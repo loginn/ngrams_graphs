@@ -3,7 +3,7 @@ A library for ngram graph analysis of text inspired by the works of George Papad
 https://www.researchgate.net/profile/George_Papadakis2/publication/280329981_Graph_vs_Bag_Representation_Models_for_the_Topic_Classification_of_Web_documents/links/5746ba9008ae298602f9fb3f.pdf
 
 
-Usage: 
+Usage : 
 ```python
 import ngram_graphs
 
@@ -13,11 +13,22 @@ docs = ['hello world', 'hell of a hello world', 'NLP rocks']
 # Create a generator for bigram graphs
 generator = ngram_graphs.Generator(n=2)
 
+# Change n
+generator.set_n(3)
+
 # Generate the graphs
 graphs = generator.generate_text_graphs(docs, weight=1.0)
+```
 
+To use word ngrams : 
+```python
+# Generate the graphs
+graphs = generator.generate_text_graphs(docs, weight=1.0, token=True, sep=' ')
+```
 
-# Compare the graphs
+Compare the graphs :
+
+```python
 print("How similar are the graphs' sizes ?")
 print("SS : {}".format(ngram_graphs.size_similarity(graphs[0], graphs[1])))
 print("SS : {}".format(ngram_graphs.size_similarity(graphs[1], graphs[2])))
@@ -38,7 +49,7 @@ print("NVS : {}".format(ngram_graphs.normalized_value_similarity(graphs[0], grap
 print("NVS : {}".format(ngram_graphs.normalized_value_similarity(graphs[1], graphs[2])))
 ```
 
-Outputs : 
+Output : 
 
 ```
 How similar are the graphs' sizes ?
