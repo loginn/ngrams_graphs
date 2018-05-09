@@ -13,8 +13,6 @@ test_graphs = generator.generate_text_graphs(test)
 
 g1 = generate_model_graph(data_graphs)
 
-print(len(data_graphs[0].vs), len(data_graphs[0].es))
-
 for idx, g2 in enumerate(test_graphs):
     print(test[idx])
     print('\tsize_similarity :\t\t\t\t', size_similarity(g1, g2))
