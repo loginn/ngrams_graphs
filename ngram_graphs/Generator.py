@@ -7,6 +7,11 @@ from ngram_graphs.utils import find_edge
 class Generator:
     def __init__(self, n):
         self.n = n
+        self.__validate_generator()
+
+    def __validate_generator(self):
+        if self.n < 1:
+            raise ValueError(f'{self.n} is not a valid value for n')
 
     def __get_ngrams(self, doc: str):
         return [doc[x:x + self.n:1] for x in range(len(doc) - self.n + 1)]
