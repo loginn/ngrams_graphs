@@ -11,6 +11,10 @@ class Generator:
     def __get_ngrams(self, doc: str):
         return [doc[x:x + self.n:1] for x in range(len(doc) - self.n + 1)]
 
+    def __get_wordngrams(self, doc: str):
+        doc = doc.split()
+        return [doc[x:x + self.n:1] for x in range(len(doc) - self.n + 1)]
+
     def __generate_text_graph(self, doc: str, weight: float):
         graph = TextGraph()
         ngrams = self.__get_ngrams(doc)
