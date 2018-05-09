@@ -16,13 +16,16 @@ class Generator:
     def __get_ngrams(self, doc: str):
         return [doc[x:x + self.n:1] for x in range(len(doc) - self.n + 1)]
 
-    def __get_wordngrams(self, doc: str):
-        doc = doc.split()
+    def __get_wordngrams(self, doc: str, sep: str):
+        doc = doc.split(sep)
         return [doc[x:x + self.n:1] for x in range(len(doc) - self.n + 1)]
 
-    def __generate_text_graph(self, doc: str, weight: float):
+    def __generate_text_graph(self, doc: str, weight: float, token: bool, sep: str):
         graph = TextGraph()
-        ngrams = self.__get_ngrams(doc)
+        if token:
+            ngrams = self.__get_wordngrams(doc, sep)
+        else:
+            ngrams = self.__get_ngrams(doc)
         for gram in ngrams:
             if gram not in [v["name"] for v in graph.vs]:
                 graph.add_vertex(name=gram)
@@ -35,8 +38,6 @@ class Generator:
                 graph.add_edge(n1, n2, name=n1 + ' ' + n2, weight=weight)
         return graph
 
-    def generate_text_graphs(self, documents: List[str], weight: float=1.0):
-        graphs = []
-        for doc in documents:
-            graphs.append(self.__generate_text_graph(doc, weight))
+    def generate_text_graphs(self, documents: List[str], weight: float=1.0, token: bool=False, sep: str=' '):
+        graphs = [self.generate_text_graphs(doc, weight, token, sep) for doc in documents]
         return graphs
