@@ -39,7 +39,7 @@ class Generator:
         return graph
 
     def generate_text_graphs(self, documents: List[str], weight: float=1.0, token: bool=False, sep: str=' '):
-        graphs = [self.generate_text_graphs(doc, weight, token, sep) for doc in documents]
+        graphs = [self.__generate_text_graph(doc, weight, token, sep) for doc in documents]
         return graphs
 
     def set_n(self, n):
