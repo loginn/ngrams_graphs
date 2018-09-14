@@ -6,7 +6,7 @@ n = 2
 data = ['head of marketing', 'marketing manager', 'marketing consultant', 'marketing']
 test = ['marketing manager', 'market analysis', 'construction worker']
 
-generator = Generator(n)
+generator = Generator(n, kind='networkx')
 
 data_graphs = generator.generate_text_graphs(data)
 test_graphs = generator.generate_text_graphs(test)

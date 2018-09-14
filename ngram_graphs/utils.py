@@ -1,8 +1,6 @@
 from typing import List
 
-
-def find_node_name(graph, node_idx):
-    return graph.vs[node_idx]["name"]
+from ngram_graphs.TextGraph import IGraphTextGraph, NetworkxTextGraph
 
 
 def find_node(graph, node_idx):
@@ -10,14 +8,19 @@ def find_node(graph, node_idx):
 
 
 def find_edge(graph, source, target):
-    for edge in graph.es:
-        if (source, target) == (find_node_name(graph, edge.source), find_node_name(graph, edge.target)):
-            return edge
-    return None
+    if isinstance(graph, IGraphTextGraph.IGraphTextGraph):
+        for edge in graph.es:
+            if (source, target) == (IGraphTextGraph.find_node_name(graph, edge.source), IGraphTextGraph.find_node_name(graph, edge.target)):
+                return edge
+        return None
+    elif isinstance(graph, NetworkxTextGraph.NetworkxTextGraph):
+        if graph.has_edge(source, target):
+            return graph.edges[source, target]
+        return None
 
 
 def generate_model_graph(graphs: List, lr: float = 0.5):
-    model = graphs[0].copy()
+    model = graphs[0]
     for graph in graphs[1:]:
         model.update(graph, lr)
     return model
