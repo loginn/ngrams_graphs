@@ -1,5 +1,3 @@
-from pprint import pprint
-
 from ngram_graphs.TextGraph.IGraphTextGraph import IGraphTextGraph
 from ngram_graphs.TextGraph.NetworkxTextGraph import NetworkxTextGraph
 
