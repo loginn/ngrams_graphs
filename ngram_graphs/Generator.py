@@ -1,4 +1,5 @@
-from typing import List
+import re
+from typing import List, Union, Callable
 
 from ngram_graphs.TextGraph.IGraphTextGraph import IGraphTextGraph
 from ngram_graphs.TextGraph.NetworkxTextGraph import NetworkxTextGraph
@@ -20,10 +21,27 @@ class Generator:
     def __get_chargrams(self, doc: str):
         return [doc[x:x + self.n:1] for x in range(len(doc) - self.n + 1)]
 
+    def __get_regexngrams(self, doc: str, pattern: str):
+        try:
+            pattern = re.compile(pattern)
+            doc = pattern.split(doc)
+        except re.error as e:
+            print(f"Error with regex '{pattern}'")
+            raise re.error(e)
+        grams = [doc[x:x + self.n:1] for x in range(len(doc) - self.n + 1)]
+        return ['_'.join(g) for g in grams]
+
     def __get_wordngrams(self, doc: str, sep: str):
-        doc = doc.split(sep)
+        if not sep:
+            doc = doc.split()
+        elif len(sep) == 1:
+            doc = doc.split(sep)
+
         wordgrams = [doc[x:x + self.n:1] for x in range(len(doc) - self.n + 1)]
         return ['_'.join(wg) for wg in wordgrams]
+
+    def __run_custom_function(self, doc: str, f: Callable[[str], List[str]]):
+        return f(doc)
 
     def __generate_igraph(self, ngrams: List, weight: float):
         graph = IGraphTextGraph()
@@ -62,12 +80,17 @@ class Generator:
     def __generate_text_graph(self, doc: str, weight: float, token: bool, sep: str):
         if token:
             graph = self.__generate_graph(self.__get_wordngrams(doc, sep), weight)
+        elif isinstance(sep, str):
+            graph = self.__generate_graph(self.__get_regexngrams(doc, sep), weight)
+        elif isinstance(sep, Callable):
+            graph = self.__generate_graph(self.__run_custom_function(doc, sep), weight)
         else:
             graph = self.__generate_graph(self.__get_chargrams(doc), weight)
         return graph
 
-    def generate_text_graphs(self, documents: List[str], weight: float=1.0, token: bool=False, sep: str=' '):
-        graphs = [self.__generate_text_graph(doc, weight, token, sep) for doc in documents]
+    def generate_text_graphs(self, documents: List[str], weight: float=1.0, wordgram: bool=False, sep: Union[str, Callable[[str], List[str]]]=None):
+        graphs = [self.__generate_text_graph(doc, weight, wordgram, sep) for doc in documents]
+        graphs = [g for g in graphs if len(g.es) > 0]
         return graphs
 
     def set_n(self, n):

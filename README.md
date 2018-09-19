@@ -18,13 +18,24 @@ generator = ngram_graphs.Generator(n=2, kind='networkx')
 generator.set_n(3)
 
 # Generate the graphs
+# By default the generator will use character level ngrams
 graphs = generator.generate_text_graphs(docs, weight=1.0)
 ```
 
-To use word ngrams : 
+Different ways to get ngrams : 
 ```python
 # Generate the graphs
-graphs = generator.generate_text_graphs(docs, weight=1.0, token=True, sep=' ')
+# Word ngrams using split() 
+graphs = generator.generate_text_graphs(docs, weight=1.0, wordgram=True)
+
+# Word ngrams using split(sep) with a single char separator
+graphs = generator.generate_text_graphs(docs, weight=1.0, wordgram=True, sep=' ')
+
+# ngrams using re.split(sep, doc) with a regular expression
+graphs = generator.generate_text_graphs(docs, weight=1.0, sep='\W+')
+
+# ngrams using a custom function. The function must take str as input and return List[str]
+graphs = generator.generate_text_graphs(docs, weight=1.0, sep=lambda x: x.split())
 ```
 
 Compare the graphs :
