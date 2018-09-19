@@ -90,7 +90,10 @@ class Generator:
 
     def generate_text_graphs(self, documents: List[str], weight: float=1.0, wordgram: bool=False, sep: Union[str, Callable[[str], List[str]]]=None):
         graphs = [self.__generate_text_graph(doc, weight, wordgram, sep) for doc in documents]
-        graphs = [g for g in graphs if len(g.es) > 0]
+        if len(graphs) and isinstance(graphs[0], IGraphTextGraph):
+            graphs = [g for g in graphs if len(g.es)]
+        elif len(graphs) and isinstance(graphs[0], NetworkxTextGraph):
+            graphs = [g for g in graphs if len(g.edges)]
         return graphs
 
     def set_n(self, n):
