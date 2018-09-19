@@ -35,6 +35,7 @@ graphs = generator.generate_text_graphs(docs, weight=1.0, wordgram=True, sep=' '
 graphs = generator.generate_text_graphs(docs, weight=1.0, sep='\W+')
 
 # ngrams using a custom function. The function must take str as input and return List[str]
+# The ngrams will be constructed from the returned list so the function must not construct the ngrams itself
 graphs = generator.generate_text_graphs(docs, weight=1.0, sep=lambda x: x.split())
 ```
 
