@@ -3,6 +3,9 @@ A library for ngram graph analysis of text inspired by the works of George Papad
 https://www.researchgate.net/profile/George_Papadakis2/publication/280329981_Graph_vs_Bag_Representation_Models_for_the_Topic_Classification_of_Web_documents/links/5746ba9008ae298602f9fb3f.pdf
 
 
+Installation : 
+`pip install ngram-graphs`
+
 Usage : 
 ```python
 import ngram_graphs
@@ -14,7 +17,7 @@ docs = ['hello world', 'hell of a hello world', 'NLP rocks']
 # Kind can be either 'igraph' (default) or 'networkx'
 generator = ngram_graphs.Generator(n=2, kind='networkx')
 
-# Change n
+# Change n for trigrams
 generator.set_n(3)
 
 # Generate the graphs
