@@ -36,6 +36,9 @@ class Generator:
             doc = doc.split()
         elif len(sep) == 1:
             doc = doc.split(sep)
+        else:
+            raise ValueError(f'{sep} is not a valid single char seperator.\n'
+                             'If you meant to use a regex, set wordgram=False in the parameters')
 
         wordgrams = [doc[x:x + self.n:1] for x in range(len(doc) - self.n + 1)]
         return ['_'.join(wg) for wg in wordgrams]
