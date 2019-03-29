@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='ngram_graphs',
-      version='0.1.11',
+      version='0.1.12',
       description='An igraph or networkx based ngram graph library for NLP',
       long_description="""Library for ngram graph comparison based on papers from George Giannakopoulos and Vangelis Karkaletsis. The library uses igraph to create directed and weighted graphs from documents and provides means to compare them using the distance metrics defined in 'Giannakopoulos, George & Karkaletsis, Vangelis. (2009). N-gram graphs: Representing documents and document sets in summary system evaluation. '""",
       url='https://github.com/loginn/ngrams_graphs',
