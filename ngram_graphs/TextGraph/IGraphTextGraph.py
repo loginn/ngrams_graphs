@@ -7,7 +7,7 @@ def find_node_name(graph, node_idx):
 
 class IGraphTextGraph(Graph):
     def __init__(self):
-        super().__init__()
+        super().__init__(directed=True)
 
     @staticmethod
     def __calc_new_weight(s_edge, weight, learning_factor) -> float:
