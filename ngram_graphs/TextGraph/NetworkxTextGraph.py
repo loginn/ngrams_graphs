@@ -1,4 +1,4 @@
-from networkx import Graph
+from networkx import DiGraph
 
 
 def find_node_name(graph, name):
@@ -8,7 +8,7 @@ def find_node_name(graph, name):
         return None
 
 
-class NetworkxTextGraph(Graph):
+class NetworkxTextGraph(DiGraph):
     def __init__(self):
         super().__init__()
 
