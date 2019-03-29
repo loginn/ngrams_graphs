@@ -1,6 +1,7 @@
 from typing import List, Union
 
-from ngram_graphs.TextGraph import IGraphTextGraph, NetworkxTextGraph
+from ngram_graphs.TextGraph.IGraphTextGraph import IGraphTextGraph, find_node_name
+from ngram_graphs.TextGraph.NetworkxTextGraph import NetworkxTextGraph
 
 
 def find_node(graph, node_idx):
@@ -8,12 +9,12 @@ def find_node(graph, node_idx):
 
 
 def find_edge(graph, source, target):
-    if isinstance(graph, IGraphTextGraph.IGraphTextGraph):
+    if isinstance(graph, IGraphTextGraph):
         for edge in graph.es:
-            if (source, target) == (IGraphTextGraph.find_node_name(graph, edge.source), IGraphTextGraph.find_node_name(graph, edge.target)):
+            if (source, target) == (find_node_name(graph, edge.source), find_node_name(graph, edge.target)):
                 return edge
         return None
-    elif isinstance(graph, NetworkxTextGraph.NetworkxTextGraph):
+    elif isinstance(graph, NetworkxTextGraph):
         if graph.has_edge(source, target):
             return graph.edges[source, target]
         return None
