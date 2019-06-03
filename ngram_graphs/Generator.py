@@ -7,7 +7,7 @@ from ngram_graphs.utils import find_edge
 
 
 class Generator:
-    def __init__(self, n: int, kind: str = 'igraph'):
+    def __init__(self, n: int, kind: str = 'networkx'):
         self.n: int = n
         self.kind: str = kind
         self.__validate_generator()
