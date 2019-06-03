@@ -9,6 +9,16 @@ class IGraphTextGraph(Graph):
     def __init__(self):
         super().__init__(directed=True)
 
+    def __copy__(self):
+        g = IGraphTextGraph()
+        for v in self.vs:
+            g.add_vertex(v)
+        for e in self.es:
+            source = find_node_name(self, e.source)
+            target = find_node_name(self, e.target)
+            self.add_edge(source, target, weight=e["weight"], name=source + ' ' + target)
+        return g
+
     @staticmethod
     def __calc_new_weight(s_edge, weight, learning_factor) -> float:
         return s_edge["weight"] + ((weight - s_edge["weight"]) * learning_factor)

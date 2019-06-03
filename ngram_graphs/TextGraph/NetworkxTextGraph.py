@@ -12,6 +12,12 @@ class NetworkxTextGraph(DiGraph):
     def __init__(self):
         super().__init__()
 
+    def __copy__(self):
+        g = NetworkxTextGraph()
+        g.add_nodes_from(self.nodes(data=True))
+        g.add_edges_from(self.edges(data=True))
+        return g
+
     @staticmethod
     def __calc_new_weight(s_edge, weight: float, learning_factor: float) -> float:
         return s_edge["weight"] + ((weight - s_edge["weight"]) * learning_factor)
