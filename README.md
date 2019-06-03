@@ -14,7 +14,7 @@ docs = ['hello world', 'hell of a hello world', 'NLP rocks']
 
 
 # Create a generator for bigram graphs
-# Kind can be either 'igraph' or 'networkx' (default)
+# Kind can be either 'igraph' or 'networkx' (default and recommended)
 generator = ngram_graphs.Generator(n=2, kind='networkx')
 
 # Change n for trigrams
