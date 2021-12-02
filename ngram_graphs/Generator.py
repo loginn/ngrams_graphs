@@ -44,7 +44,8 @@ class Generator:
         return ['_'.join(wg) for wg in wordgrams]
 
     def __run_custom_function(self, doc: str, f: Callable[[str], List[str]]):
-        return f(doc)
+        grams = [f(doc)[x:x + self.n:1] for x in range(len(f(doc)) - self.n + 1)]
+        return ['_'.join(g) for g in grams]
 
     def __generate_igraph(self, ngrams: List, weight: float):
         graph = IGraphTextGraph()
