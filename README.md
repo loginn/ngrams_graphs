@@ -23,6 +23,16 @@ generator.set_n(3)
 # Generate the graphs
 # By default the generator will use character level ngrams
 graphs = generator.generate_text_graphs(docs, weight=1.0)
+
+# Generate a model graph from the graphs of all your documents
+# It will contain all the nodes and edges in your documents
+# The lr (learning rate) parameter describes how much the weights are affected by the weights
+# in different graphs according to this formula : 
+# weight = current_weight + ((new_weight - current_weight) * lr)
+# where: 
+# - current_weight is the current weight of the edge in the model graph
+# - new_weight is the weight of the edge in the new document graph being added to the model graph
+model_graph = ngram_graphs.utils.generate_model_graph(graphs, lr=0.5)
 ```
 
 Different ways to get ngrams : 
